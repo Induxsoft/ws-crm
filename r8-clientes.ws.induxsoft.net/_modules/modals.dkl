@@ -1,0 +1,461 @@
+﻿#!
+module
+{
+    ##
+        div(class="modal fade" id="modalmsgSer" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true")
+        {
+            div(class= "modal-dialog modal-sm modal-dialog-centered" role ="document")
+            {
+                div(class="modal-content")
+                {
+                    div(class="modal-header")
+                    {
+                        h5(class="modal-title" id="textomdl"){"#<@title_modal>."}
+                        button(type="button" class="close" "data-dismiss"="modal" "aria-label"="Close")
+                        {
+                            span ("aria-hidden"="true") {$"&times;"}
+                        }
+                    }
+                    div(class="modal-body" id="bdymsg")
+                    {
+						p(id="msgInfo") {$""}
+                    }
+                    div(class="modal-footer" id="ftrAddClt")
+                    {
+                        button(type="button" class="btn btn-danger" "data-dismiss"="modal") { "Cerrar"}
+                    }
+                }
+            }		
+        }
+        
+        div(class="modal fade" id="modalglobal" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true")
+        {
+            div(class= "modal-dialog modal-md modal-dialog-centered" role ="document")
+            {
+                div(class="modal-content")
+                {
+                    div(class="modal-header")
+                    {
+                        h5(class="modal-title" id="item_textomdl"){""}
+                        button(type="button" onclick="cancelModal();" class="close" "data-dismiss"="modal" "aria-label"="Close" style="border: 1px solid #CED4DA;background: transparent;")
+                        {
+                            span ("aria-hidden"="true") {$"&times;"}
+                        }
+                    }
+                    div(class="modal-body" id="bdymsg")
+                    {
+                        div(class="divcaso mb-2" id="divcaso" style="display:none")
+                        {
+                            label(id="lbltipocaso" "for"="tipocaso"){"Tipo de caso:"}
+                            ##
+                            do select.tipocaso()
+                            ##
+                            label(id="lblasunto" "for"="txtasunto"){"Asunto:"}
+                            input(class="form-control" id="txtasunto" name="txtasunto" placeholder="Asunto...")
+                            label(id="lblfechaapertura" "for"="fechaapertura"){"Fecha de apertura:"}
+                            input(type="date" class="form-control" readonly="true" value="#<date_str(now(),'yyyy-MM-dd')>" name="fechaapertura" id="fechaapertura")
+                            label(id="lblhoraapertura" "for"="horaapertura"){"Hora de apertura"}
+                            ##
+                            hora=date_str(now(),'HH:mm:ss')
+                            ##
+                            input(type="time" class="form-control" value="#<hora>" name="horaapertura" id="horaapertura")
+                            $""
+                        }
+                        label(id="lbldescripcion" "for"="txtadd"){"Descripción:"}
+                        textarea(class="form-control" id="txtadd" style="resize:none;height:10rem" placeholder="..."){""}
+					    $""
+                    }
+                    div(class="modal-footer" id="ftrAddClt")
+                    {
+                        button(type="button" class="btn btn-primary" "data-dismiss"="modal" data="" id = "btn-add") { "Aceptar"}
+                        button(type="button" class="btn btn-danger" "data-dismiss"="modal" onclick="cancelModal();") { "Cancelar"}
+                    }
+                }
+            }		
+        }
+        // ******************************************* modal de loading********************
+        div(class="modal fade" style="top:-270;pointer-events: none;z-index:100000" id="modalload" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-backdrop"="static")
+        {
+            div(class= "modal-dialog modal-sm modal-dialog-centered" role ="document")
+            {
+                div(class="modal-content" style="height:5rem;justify-content:center")
+                {
+                    // div(class="modal-header")
+                    // {
+                    //     h5(class="modal-title" id="textomdl"){"#<@title_modal>."}
+                    //     button(type="button" class="close" "data-dismiss"="modal" "aria-label"="Close")
+                    //     {
+                    //         span ("aria-hidden"="true") {$"&times;"}
+                    //     }
+                    // }
+                    div(class="modal-body" id="bdymsg")
+                    {
+                        span(class="loading style-2"){""}
+                        b(id="load"){"Cargando"}   
+                        span{"."}
+                        span{"."}
+                        span{"."}
+                    }
+                    // div(class="modal-footer" id="ftrAddClt")
+                    // {
+                    //     button(type="button" class="btn btn-danger" "data-dismiss"="modal") { "Cerrar"}
+                    // }
+                }
+            }       
+        }
+        style{$'.modal-backdrop { opacity: .20 !important; }'}
+        //************************************ modal para buscar clientes *********************************************
+        div(class="modal fade" style="pointer-events: none;" id="modalclientes" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-backdrop"="static")
+        {
+            div(class= "modal-dialog modal-lg modal-dialog-centered" role ="document")
+            {
+                div(class="modal-content")
+                {
+                    div(class="modal-header")
+                    {
+                        h5(class="modal-title" id="textomdl"){"Clientes."}
+                        button(type="button" id="close" class="close" style="border: 1px solid #CED4DA;background: transparent;" "data-dismiss"="modal" "aria-label"="Close")
+                        {
+                            span ("aria-hidden"="true") {$"&times;"}
+                        }
+                    }
+                    div(class="modal-body" id="bdymsg")
+                    {
+                       div(class="card")
+                       {
+                            div(class="p-2 m-0 d-flex align-items-center")
+                            {
+                                input(class="form-control" placeholder="Busqueda de clientes..." id="txtfiltro")
+                                button(class="btn btn-primary" onclick="filtroCliente()" id="filtroclient"){"Buscar"}
+                            }
+                       }
+                       div(class="card table-responsive" style="max-height:50vh")
+                       {
+                            $""
+                            table(class="table table-hover")
+                            {
+                                thead
+                                {
+                                    tr{
+                                        th(style="position: sticky !important;top:0 !important;background-color:#fff;"){"Código"}
+                                        th(style="position: sticky !important;top:0 !important;background-color:#fff;"){"Nombre"}
+                                        th(style="position: sticky !important;top:0 !important;background-color:#fff;"){"RFC"}
+                                        th(style="position: sticky !important;top:0 !important;background-color:#fff;"){"Curp"}
+                                        th(style="position: sticky !important;top:0 !important;background-color:#fff;"){"Email"}
+                                    }
+                                }
+                                tbody(id="table-body")
+                                {
+                                    $""
+                                }
+                                
+                            }                  
+                        }
+                    }
+                    div(class="modal-footer" id="ftrAddClt")
+                    {
+                        button(type="button" id="close" class="btn btn-danger close" "data-dismiss"="modal") { "Cerrar"}
+                    }
+                }
+            }       
+        }
+        //****************************modal para adjuntos de cada caso************************
+        div(class="modal fade" style="pointer-events: none;" id="modaladjuntos" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-backdrop"="static")
+        {
+            div(class= "modal-dialog modal-lg modal-dialog-centered" role ="document")
+            {
+                div(class="modal-content")
+                {
+                    div(class="modal-header")
+                    {
+                        h5(class="modal-title" id="textomdl"){"Explorador de documentos."}
+                        button(type="button" id="" onclick="hidemodalAdjuntos()" class="" style="border: 1px solid #CED4DA;background: transparent;" "data-dismiss"="modal" "aria-label"="Close")
+                        {
+                            span ("aria-hidden"="true") {$"&times;"}
+                        }
+                    }
+                    div(class="modal-body" id="bdymsg")
+                    {
+                       div(class="card table-responsive" style="max-height:50vh")
+                       {
+                            div(class="card")
+                            {
+                                div(class="p-2 m-0 d-flex align-items-center")
+                                {
+                                    button(class="btn btn-primary" onclick="addDocument()"){"Agregar Documento"}
+                                    // button(class="btn btn-secondary" style="margin-left:2px; margin-right:2px" ){"Modificar"}
+                                    // button(class="btn btn-danger"){"Eliminar"}
+                                }
+                                
+                                $""
+                            }
+                            div(class="card table-responsive" style="max-height:50vh")
+                            {
+                                table(class="table table-hover")
+                                {
+                                    thead{
+                                        tr{
+                                            th{"Nombre"}
+                                            th{"Descripción"}
+                                            th{"Tipo"}
+                                            th{"Modificado"}
+                                            th{"Alta"}
+                                            th{"Acción"}
+                                        }
+                                    }
+                                    tbody(id="body-adjuntos")
+                                    {
+                                        $""
+                                    }
+                                }
+                                $""
+                            }
+                            $""
+                        }
+                    }
+                    div(class="modal-footer" id="ftrAddClt")
+                    {
+                        button(type="button" id="" class="btn btn-danger " onclick="hidemodalAdjuntos()" "data-dismiss"="modal") { "Cerrar"}
+                    }
+                }
+            }       
+        }
+
+        // *********************************** modal editar/agregar datos de los adjuntos**************************
+        div(class="modal fade" id="modaladdupdateadjuntos" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-backdrop"="static")
+        {
+            div(class= "modal-dialog modal-md modal-dialog-centered" role ="document")
+            {
+                div(class="modal-content" )
+                {
+                    div(class="modal-header")
+                    {
+                        h5(class="modal-title" id="titleadjunto"){""}
+                        button(type="button" onclick="hideModifDataAdjuntos()" style="border: 1px solid #CED4DA;background: transparent;" class="close" "data-dismiss"="modal" "aria-label"="Close")
+                        {
+                            span ("aria-hidden"="true") {$"&times;"}
+                        }
+                    }
+                    div(class="modal-body" id="bdymsg")
+                    {
+                        div(class="card")
+                        {
+                            div(class="card-body")
+                            {
+                                label{"Nombre:"}
+                                input(class="form-control" data="" id="txtNombreAdjunto")
+                                label{"Descripción:"}
+                                input(class="form-control" id="txtDescripcionAdjunto")
+                                label{"Palabras claves:"}
+                                textarea(class="form-control" id="txtpalabrasclaves"){""}
+
+                                div(class="p-2 m-0 d-flex align-items-center div-ocult")
+                                {
+                                    input(type="radio" class="rdiImport" value="import" checked="true" name="rdiImport" id="rdoimportar")
+                                    label("for"="rdoimportar"){"Importar desde archivo"}
+                                }
+                                div(class="p-2 m-0 d-flex align-items-center div-ocult")
+                                {
+                                    input(class="form-control" type="file" id="txtinportfile")
+                                    // button(class="btn btn-success"){"Examinar"}
+                                }
+                                div(class="p-2 m-0 d-flex align-items-center div-ocult")
+                                {
+                                    input(type="radio" class="rdiImport" value="enlazar" name="rdiImport" id="rdoenlazar")
+                                    label("for"="rdoenlazar"){"Enlazar una url"}
+                                }
+                                div(class="p-2 m-0 d-flex align-items-center div-ocult")
+                                {
+                                    label{"URL:"}
+                                    input(class="form-control" disabled="true" id="txtenlazarfile")
+                                }
+                            }
+                        }
+                       $""
+                    }
+                    div(class="modal-footer" id="ftrAddClt")
+                    {
+                        button(type="button" class="btn btn-primary" id="btnaddupd"){ "Aceptar"}
+                        button(type="button" class="btn btn-danger" onclick="hideModifDataAdjuntos()" "data-dismiss"="modal"){ "Cerrar"}
+                    }
+                }
+            }       
+        }
+
+        //****************************************************modal para catalogos de prioridad**************************
+        div(class="modal fade" style="pointer-events: none;" id="modal_catalog_prioridad" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-backdrop"="static")
+        {
+            div(class= "modal-dialog modal-lg modal-dialog-centered" role ="document")
+            {
+                div(class="modal-content")
+                {
+                    div(class="modal-header")
+                    {
+                        h5(class="modal-title" id="textomdl"){"Catálogo de prioridades."}
+                        button(type="button" onclick="module.hide_modal('modal_catalog_prioridad')" id="close" class="close" style="border: 1px solid #CED4DA;background: transparent;" "data-dismiss"="modal" "aria-label"="Close")
+                        {
+                            span ("aria-hidden"="true") {$"&times;"}
+                        }
+                    }
+                    div(class="modal-body" id="bdymsg")
+                    {
+                        button(class="btn btn-primary mb-2" id="btnnuevocatalogo" onclick="module.new_catalogo(this)"){"Nuevo"}
+                       div(class="card table-responsive" style="max-height:50vh" id="catalogo_prioridad")
+                       {
+                            $""
+
+                            table(class="table table-hover")
+                            {
+                                thead
+                                {
+                                    tr{
+                                        th(style="position: sticky !important;top:0 !important;background-color:#fff;"){"Descripción"}
+                                        th(style="position: sticky !important;top:0 !important;background-color:#fff;"){"Cantidad"}
+                                        th(style="position: sticky !important;top:0 !important;background-color:#fff;"){"Tiempo en"}
+                                        // th(style="position: sticky !important;top:0 !important;background-color:#fff;"){"Curp"}
+                                        // th(style="position: sticky !important;top:0 !important;background-color:#fff;"){"Email"}
+                                    }
+                                }
+                                tbody(id="table-body")
+                                {
+                                    $""
+                                }
+                                
+                            }                  
+                        }
+                    }
+                    div(class="modal-footer" id="ftrAddClt")
+                    {
+                        button(type="button" onclick="module.hide_modal('modal_catalog_prioridad')" id="close" class="btn btn-danger close" "data-dismiss"="modal") { "Cerrar"}
+                    }
+                }
+            }       
+        }
+        ///************************editar catalogos de prioridades********************
+        div(class="modal fade" style="pointer-events: none;" id="modal_edit_catalog_prioridad" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-backdrop"="static")
+        {
+            div(class= "modal-dialog modal-md modal-dialog-centered" role ="document")
+            {
+                div(class="modal-content")
+                {
+                    div(class="modal-header")
+                    {
+                        h5(class="modal-title" id="textomdl"){"Prioridades."}
+                        button(type="button" onclick="module.hide_modal('modal_edit_catalog_prioridad')" id="close" class="close" style="border: 1px solid #CED4DA;background: transparent;" "data-dismiss"="modal" "aria-label"="Close")
+                        {
+                            span ("aria-hidden"="true") {$"&times;"}
+                        }
+                    }
+                    div(class="modal-body" id="bdymsg")
+                    {
+                            label{"Descripción"}
+                            input(id="txtdescripcioncatalogo" class="form-control")
+                            
+
+                            div(class="row")
+                            {
+                                div(class="col-6")
+                                {
+                                    label{"Duración prevista:"}
+                                    input(type="number" id="txtduracionprevistacatalogo" class="form-control" min="0" value="0")
+                                }
+                                div(class="col-6")
+                                {
+                                    label{"Tiempo prevista"}
+                                     #!
+                                    do select.duracionPrevia(@false)
+                                    #$
+                                }
+                            }
+                            
+                           
+                    }
+                    div(class="modal-footer" id="ftrAddClt")
+                    {
+                        button(type="button" onclick="" id="btnsavecatlogoprioridad" class="btn btn-success" ) { "Aceptar"}
+                        button(type="button" onclick="module.hide_modal('modal_edit_catalog_prioridad')" id="close" class="btn btn-danger close" "data-dismiss"="modal") { "Cerrar"}
+                    }
+                }
+            }       
+        }
+        // *****************************************************************************************
+
+        //*******************************************************tipos de casos***************************************
+        div(class="modal fade" style="pointer-events: none;" id="modal_tipos_casos" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-backdrop"="static")
+        {
+            div(class= "modal-dialog modal-md modal-dialog-centered" role ="document")
+            {
+                div(class="modal-content")
+                {
+                    div(class="modal-header")
+                    {
+                        h5(class="modal-title" id="textomdl"){"Tipos de casos."}
+                        button(type="button" id="close" onclick="module.hide_modal('modal_tipos_casos')" class="close" style="border: 1px solid #CED4DA;background: transparent;" "data-dismiss"="modal" "aria-label"="Close")
+                        {
+                            span ("aria-hidden"="true") {$"&times;"}
+                        }
+                    }
+                    div(class="modal-body" id="bdymsg")
+                    {
+                        button(class="btn btn-primary mb-2" id="btnnewtipocaso" onclick="module.new_tipocaso()"){"Nuevo"}
+                       div(class="card table-responsive" style="max-height:50vh" id="tiposdecasos")
+                       {
+                            $""
+                            table(class="table table-hover")
+                            {
+                                thead
+                                {
+                                    tr{
+                                        th(style="position: sticky !important;top:0 !important;background-color:#fff;"){"Descripción"}
+                                    }
+                                }
+                                tbody(id="table-body")
+                                {
+                                    $""
+                                }
+                                
+                            }                  
+                        }
+                    }
+                    div(class="modal-footer" id="ftrAddClt")
+                    {
+                        button(type="button" id="close" onclick="module.hide_modal('modal_tipos_casos')" class="btn btn-danger close" "data-dismiss"="modal") { "Cerrar"}
+                    }
+                }
+            }       
+        }
+
+        // *****************************edit tipo de caso*********************************
+        div(class="modal fade" style="pointer-events: none;" id="modal_edit_tipocaso" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-backdrop"="static")
+        {
+            div(class= "modal-dialog modal-md modal-dialog-centered" role ="document")
+            {
+                div(class="modal-content")
+                {
+                    div(class="modal-header")
+                    {
+                        h5(class="modal-title" id="textomdl"){"Tipo de caso."}
+                        button(type="button" onclick="module.hide_modal('modal_edit_tipocaso')" id="close" class="close" style="border: 1px solid #CED4DA;background: transparent;" "data-dismiss"="modal" "aria-label"="Close")
+                        {
+                            span ("aria-hidden"="true") {$"&times;"}
+                        }
+                    }
+                    div(class="modal-body" id="bdymsg")
+                    {
+                            label{"Descripción"}
+                            input(id="txtdescripciontipocaso" maxlength="100" class="form-control")
+                           
+                    }
+                    div(class="modal-footer" id="ftrAddClt")
+                    {
+                        button(type="button" onclick="" id="btnsavetipodecaso" class="btn btn-success" ) { "Aceptar"}
+                        button(type="button" onclick="module.hide_modal('modal_edit_tipocaso')" id="close" class="btn btn-danger close" "data-dismiss"="modal") { "Cerrar"}
+                    }
+                }
+            }       
+        }
+        //*******************************************************************************
+
+        
+        ##
+}

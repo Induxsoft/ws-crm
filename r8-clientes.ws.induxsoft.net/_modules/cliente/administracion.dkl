@@ -1,0 +1,153 @@
+#include "dkli.dkh"
+#!
+module "administracion"
+{
+	#include "functions.dkh"
+	#include "serialize.dkh"
+	#include "dbr.dkh"
+	#include "uielements.dkl"
+	#include "uielements.dbtable.dkl"
+
+	do @context.begin(@crud_context)
+	#$
+	div(class="container-fluid")
+	{
+		#!
+		#include "view_detail.dkl"
+		#include "cliente.dkl"
+		#include "admin_js.dkl"
+		#include "../modals.dkl"
+		#$
+		$""
+		div(class="card")
+		{
+			div(class="card-body")
+			{
+				label{$"Buscar"}
+				div(class="d-flex flex-grow-1")
+				{
+					input(class="form-control" placeholder="Asunto ,Descripción ,Código cliente ,Nombre cliente ,Número cliente ,Usuario crea ,Usuario asignado..." id="text_filter_admin" value="#<@('parameters/text_filter')>")
+					button(class="btn btn-primary" onclick="module.text_filter()" id="btn-search-admin"){$"Buscar"}
+				}
+				div(class="tab-content" id="nav-tabContent" )
+				{
+					div(class="tab-pane fade show active" id="nav-profile" role="tabpanel" "aria-labelledby"="nav-profile-tab")
+					{
+						li(class="nav-item" style="list-style:none;cursor:pointer")
+						{
+							a(class="nav-link" "data-toggle"="collapse" "data-target"=".multi-collapse-filter")
+							{
+								div(class="d-flex flex-grow-1" id="div-seccion-filter")
+								{
+									i(class="fas fa-angle-double-right"){""}
+									b(style="width:25vh;"){"Selección de filtro:"}
+									hr(style="margin:0;width:100%;border:1px solid"){""}	
+								}
+								
+							}
+							div(class="collapse multi-collapse-filter show")
+							{
+								div(class="d-flex")
+								{
+									label(class="flex-grow-1"){""}
+									button(class="btn btn-secondary" id="btn-edit" onclick="module.filter_enabled(this)"){"Editar"}
+									button(class="btn btn-success hidden" id="btn-apply" onclick="module.filter_apply()"){"Aplicar"}
+									button(class="btn btn-danger hidden" style="margin-left:2px" id="btn-cancel" onclick="module.filter_cancel()"){"Cancelar"}
+								}
+								div(class="module-filter")
+								{
+									label{"Rango de fechas:"}
+									div(class="d-flex flex-grow-1")
+									{
+										
+										#!
+										do select.rango_fechas()
+										#$
+										
+										label(class="p-2"){"De:"}
+
+										#!
+										de=ifstr(@('parameters/seccion_filter/de')=="",date_str(now(),'yyyy-MM-dd'),@('parameters/seccion_filter/de'))
+										#$
+										input(type="date" id="fecha_de" value="#<de>" class="form-control")
+										label(class="p-2"){"A:"}
+										#!
+										a=ifstr(@('parameters/seccion_filter/a')=="",date_str(now(),'yyyy-MM-dd'),@('parameters/seccion_filter/a'))
+										#$
+										input(type="date" id="fecha_a" value="#<a>" class="form-control")
+									}
+									
+									div(class="row")
+									{
+										div(class="col-4")
+										{
+											div(class="form-group")
+											{
+												label{"Filtrar por:"}
+												#!
+												do select.tipocaso_admin()
+												#$
+											}
+										}
+										div(class="col-4")
+										{
+											div(class="form-group")
+											{
+												label{"Asignado a:"}
+												#!
+												do select.userassign_admin(@false)
+												#$
+												
+											}
+											
+										}
+										div(class="col-4")
+										{
+											div(class="form-group")
+											{
+												label{"Por vencimiento:"}
+												#!
+												do select.por_vencimiento()
+												#$
+												
+											}
+										}
+										
+									}
+									#!
+									check=@('parameters/seccion_filter/showclosed')
+									#$
+									label(class=""){input(type="checkbox" "#<ifstr(parse.bool(check),'checked','')>"="true" id="check_show_cancelados")"Mostrar casos cerrados"}
+								}
+								
+							}
+						}
+					}
+				}
+			}
+		}
+		div(class="card")
+		{
+			div(class="card-header")
+			{
+				button(class="btn btn-success " style="margin-right:2px" onclick="module.search_cliente()"){"Crear"}
+				button(class="btn btn-primary " style="margin-right:2px" onclick="module.open_modal('modal_catalog_prioridad',this);" trigger="module.trigger_load_catalogos();"){"Catálogos de prioridades"}
+				button(class="btn btn-primary " style="margin-right:2px" onclick="module.open_modal('modal_tipos_casos',this);" trigger="module.trigger_load_tiposcasos()"){"Tipos de casos"}
+			}
+			div(class="card-body")
+			{
+				$""
+				input(type="hidden" id="cliente" class="cliente_admin" trigger="addCasos();")
+				div(class="" style="overflow:auto;height:50vh;")
+				{
+					#!
+					do table.casos()
+					#$	
+				}
+				
+			}
+		}
+	}
+	#!
+	do @context.end()
+}

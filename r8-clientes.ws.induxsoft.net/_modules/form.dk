@@ -1,0 +1,62 @@
+#include "dkli.dkh"
+#!
+module "forms"
+{
+	#include "functions.dkh"
+	#include "serialize.dkh"
+
+	form.default::
+	{
+		#$
+		div
+		{
+			h1{"form"}
+			pre{code{$"#<to.json(@crud_context)>"} }
+		}
+	}
+
+	#!
+	form.search_client::
+	{
+		new=""
+		if @@(@crud_context,"http/request/get/_entities_type")==""{new="/"+@_entities_type}
+		#$
+		div(class="justify-content-center")
+		{
+			div(class="card")
+			{
+				div(class="card-body")
+				{
+					form(id="frm-clientes" action=".#<new>/" method="GET")
+					{
+						div(class="row")
+						{
+							div(class="col-lg-8")
+							{
+								label("for"="search_client"){"Buscar:"}
+								input(type="search" id="search_client" name="text_filter" value="#<@('parameters/text_filter')>" placeholder="Código, Nombre, Curp o Email" class="form-control")
+							}
+							div(class="col-lg-4 mt-4")
+							{
+								button(type="submit" class="btn btn-primary w-25"){"Buscar"}
+							}
+						}
+						
+					}
+					#!
+					filter=ifstr(@('parameters/text_filter')!="","?text_filter="+@('parameters/text_filter'),"")
+					#$
+					a(class="btn btn-light shadow-sm p-2 mb-2 bg-white" href=".#<new>/_new/#<filter>" id="btnAgregar"){i(class="fa fa-plus" style="color:#dc3545"){""}$"Nuevo cliente"}
+					a(class="btn btn-light shadow-sm p-2 mb-2 bg-white" href=".#<new>/_admin/" style="margin-left:4px;" id="btnAdmin"){
+						svg(xmlns="http://www.w3.org/2000/svg" style="color:green;" width="18" height="18" fill="currentColor" class="bi bi-journals" viewBox="0 0 16 16")
+						{
+							path(d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z"){""}
+							path(d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0z"){""}
+						}$"Administración"}
+					
+				}
+			}
+		}br{}
+	}
+	#!
+}
