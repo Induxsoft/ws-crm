@@ -111,4 +111,37 @@ module "config.dkl"
 
 	if @ws==""{@ws="MaxiComercio.R5/BdR8_MXCR5"}
 
+
+
+	@use_bdconfig=@false
+	@accept_qnames=@false
+
+	//si @use_bdconfig es false
+	@qname_app="workspaces"
+	@qname_prefix="connections@induxsoft/"
+
+	//@path_root="web/crm-sales.ws.induxsoft.net/_app"//192.168.1.91
+	@url_workspace="https://ws.induxsoft.net/"
+	//@path_absolute=""
+	@end_point_service="/"
+	@pathjs=@dir_catalogs+"sales_pipeline/_js"
+	@path_views=path.concat(@dir_catalogs,"sales_pipeline/_views")
+
+	@path_js=path.concat(@pathjs,"_js")
+	@model_js=path.concat(@pathjs,"model.js")
+	@driver_js=path.concat(@pathjs,"controller.js")
+	@view_js=path.concat(@pathjs,"views.js")
+	@designer_js=path.concat(@pathjs,"designer.js")
+
+	@message_error=""
+
+	@url="_services/"
+	
+
+	new @config
+	{
+		@"connection":""//pipelines@myapp
+	}
+	
+
 }

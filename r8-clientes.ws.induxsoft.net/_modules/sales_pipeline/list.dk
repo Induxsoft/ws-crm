@@ -1,0 +1,36 @@
+#include "dkli.dkh"
+#!
+module ""
+{
+	#include "functions.dkh"
+	#include "serialize.dkh"
+	#include "cookies.dkl"
+	 @SITE_INCLUDES="config.dkl,lib.dk"
+     #include "lib.dk"
+    
+	do @context.begin(@crud_context)
+    
+     ref @http_context=@@(@crud_context,"&http")
+     @ws=@@(@http_context,"request")
+
+	#include "website.dkl"
+    do address_workspace(@true)
+    
+	#$
+
+	div(class="container-fluid")
+	{
+		div(class="card" style="width:30rem")
+		{
+			div(class="card-header")
+			{
+				$"Pipelines"
+			}
+			div(class="card-body")
+			{
+				a(class="btn btn-primary" href="./?ps=1"){"Ver Pipelines"}
+			}
+		}
+	}
+	// h5{a{"Pipelines"}}
+}

@@ -1,7 +1,11 @@
 GET: /_js/definitive.api.js > $web/r8-clientes.ws.induxsoft.net/_js/definitive.api.js
+GET: /_css/style.css > /_modules/sales_pipeline/_css/style.css
 GET: / > $web/r8-clientes.ws.induxsoft.net/index.dkl
 GET: /{ws}/ > $web/r8-clientes.ws.induxsoft.net/_modules/entry-point.dkl
+*: /crm/sales/pipeline/{pipeline_id?}/ > /_modules/sales_pipeline/_services/index.dkl
+*: /crm/sales/pipeline/{pipeline_id}/stages/{stage_id?}/ > /_modules/sales_pipeline/_services/index.dkl
 GET,POST,PUT,DELETE: /{ws}/{_entities_type}/{_entity_id?}> $web/r8-clientes.ws.induxsoft.net/_modules/entry-point.dkl
 GET,POST,PUT,DELETE: /{ws}/{_entities_type}/{_entity_id}/{_case}> $web/r8-clientes.ws.induxsoft.net/_modules/entry-point.dkl
 *: /{_app_group}/{_connection}/{_entities_type}/{_entity_id?}> $web/r8-clientes.ws.induxsoft.net/_modules/entry-point.dkl
+
 

@@ -132,7 +132,7 @@ module "administracion"
 			{
 				button(class="btn btn-success " style="margin-right:2px" onclick="module.search_cliente()"){"Crear"}
 				button(class="btn btn-primary " style="margin-right:2px" onclick="module.open_modal('modal_catalog_prioridad',this);" trigger="module.trigger_load_catalogos();"){"Catálogos de prioridades"}
-				button(class="btn btn-primary " style="margin-right:2px" onclick="module.open_modal('modal_tipos_casos',this);" trigger="module.trigger_load_tiposcasos()"){"Tipos de casos"}
+				button(class="btn btn-info " style="margin-right:2px" onclick="module.open_modal('modal_tipos_casos',this);" trigger="module.trigger_load_tiposcasos()"){"Tipos de casos"}
 			}
 			div(class="card-body")
 			{
