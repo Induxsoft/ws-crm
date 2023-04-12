@@ -151,18 +151,18 @@ module "form.dk"
             }
         }
         #$
-        div(class="w-50 mt-4" id="div-cliente")
+        div(class="mt-4" id="div-cliente")
         {
-            div(class="container shadow py-2")
+            div(class="container-lg shadow py-2")
             {
                 div(class="container network_wrapper col-sm p-2")
                 {
                     div(class="card")
                     {
                         div(class="#<ifstr(@('error/message')!='','alert alert-danger','')>"){$"#<@('error/message')>"}
-                        div(class="card-header")
+                        div(class="card-header bg-white")
                         {
-                            h5(class="card-title"){$"Cliente"}
+                            h5(class="card-title mt-4 mb-4"){$"Nuevo cliente"}
                             ul(class="nav nav-tabs card-header-tabs" "data-bs-tabs"='tabs')
                             {
                                 li(class="nav-item")
@@ -184,7 +184,7 @@ module "form.dk"
                             }
                         }
 
-                        form(action="./#<filter>" method="POST" class="card-body tab-content p-4" onsubmit="return validateForm()")
+                        form(action="./#<filter>" method="POST" class="card-body tab-content p-3" onsubmit="return validateForm()")
                         {	
                            
                             div(class="tab-pane active" id="general")
@@ -195,7 +195,7 @@ module "form.dk"
                                     {
                                         div(class="col-12")
                                         {
-                                            label{"Código:"}
+                                            label{small(class="text-secondary"){$"Código:"}}
                                             input(type="text" name="codigo" maxlength="35" class="form-control" value="#<@('./codigo')>")
                                         }
                                     }
@@ -203,7 +203,7 @@ module "form.dk"
                                     {
                                         div(class="col-12")
                                         {
-                                            label{"Nombre:"}
+                                            label{small(class="text-secondary"){$"Nombre:"}}
                                             input(type="text" id="nombre" maxlength="150" name="nombre" class="form-control" value="#<@('./nombre')>")
                                         }
                                     }
@@ -211,7 +211,7 @@ module "form.dk"
                                     {
                                         div(class="col-12")
                                         {
-                                            label{"Tipo:"}
+                                            label{small(class="text-secondary"){$"Tipo:"}}
                                             ##
                                             do uie.dbSelect(def_tipo_cliente)
                                             ##
@@ -222,12 +222,12 @@ module "form.dk"
                                     {
                                         div(class="col-6")
                                         {
-                                            label{"RFC:"}
+                                            label{small(class="text-secondary"){$"RFC:"}}
                                             input(type="text" name="rfc" maxlength="15" style="text-transform: uppercase;" id="rfc" class="form-control" value="#<@('./rfc')>")
                                         }
                                         div(class="col-6")
                                         {
-                                            label{"CURP:"}
+                                            label{small(class="text-secondary"){$"CURP:"}}
                                             input(type="text" name="curp" maxlength="25" class="form-control" value="#<@('./curp')>")
                                         }
                                     }
@@ -238,7 +238,7 @@ module "form.dk"
                                 {
                                     div(class="card-header bg-transparent")
                                     {
-                                        h6{$"Domicilio fiscal"}
+                                        h6{small(class="text-secondary"){$"Domicilio fiscal"}}
                                     }
                                     div(class="card-body")
                                     {
@@ -246,7 +246,7 @@ module "form.dk"
                                         {
                                             div(class="col-6")
                                             {
-                                                label{"País:"}
+                                                label{small(class="text-secondary"){$"País:"}}
                                                 ##
                                                 do uie.dbSelect(def_pais)
                                                 ##
@@ -254,7 +254,7 @@ module "form.dk"
                                             }
                                             div(class="col-6")
                                             {
-                                                label{"Estado:"}
+                                                label{small(class="text-secondary"){$"Estado:"}}
                                                 select(id="estado" name="iestado" class="form-select"){""}
                                                 //input(type="text" name="domicilio_estado" class="form-control" value="#<@('./estado/nombre')>")
                                             }
@@ -263,12 +263,12 @@ module "form.dk"
                                         {
                                             div(class="col-12")
                                             {
-                                                label{"Ciudad:"}
+                                                label{small(class="text-secondary"){$"Ciudad:"}}
                                                 select(id="ciudad" name="iciudad" class="form-select"){""}
                                                 //input(type="text" name="domicilio_ciudad" class="form-control" value="#<@('./ciudad/nombre')>")
                                             }
                                         }
-                                        p{"Dirección:"}
+                                        h6(class="m-4"){"Dirección:"}
                                         #!
                                         ref dom_list =  split(@('./domicilio/direccion'), "|")
                                         calle=""
@@ -287,18 +287,18 @@ module "form.dk"
                                         {
                                             div(class="col-6")
                                             {
-                                                label{"Calle:"}
+                                                label{small(class="text-secondary"){$"Calle:"}}
                                                 input(type="text" name="calle" class="form-control" value="#<calle>")
                                             }
                                             div(class="col-3")
                                             {
-                                                label{"No. ext:"}
+                                                label{small(class="text-secondary"){$"No. ext:"}}
                                                 
                                                 input(type="text" name="next" class="form-control" value="#<no_ext>")
                                             }
                                             div(class="col-3")
                                             {
-                                                label{"No int:"}
+                                                label{small(class="text-secondary"){$"No int:"}}
                                                 input(type="text" name="nint" class="form-control" value="#<no_int>")
                                             }
                                         }
@@ -306,7 +306,7 @@ module "form.dk"
                                         {
                                             div(class="col-12")
                                             {
-                                                label{"Colonia:"}
+                                                label{small(class="text-secondary"){$"Colonia:"}}
                                                 input(type="text" name="colonia" maxlength="150" class="form-control" value="#<@('./domicilio/colonia')>")
                                             }
                                         }
@@ -314,12 +314,12 @@ module "form.dk"
                                         {
                                             div(class="col-4")
                                             {
-                                                label{"Código postal:"}
+                                                label{small(class="text-secondary"){$"Código postal:"}}
                                                 input(type="text" name="codpos" maxlength="10" class="form-control" value="#<@('./domicilio/codpos')>")
                                             }
                                             div(class="col-8")
                                             {
-                                                label{"Tel:"}
+                                                label{small(class="text-secondary"){$"Tel:"}}
                                                 input(type="text" name="domtelefonos" class="form-control" maxlength="150" value="#<@('./domicilio/telefonos')>")
                                             }
                                         }
@@ -331,7 +331,7 @@ module "form.dk"
                                     {
                                         div(class="col-12")
                                         {
-                                            label{"Teléfonos:"}
+                                            label{small(class="text-secondary"){$"Teléfonos:"}}
                                             input(type="text" name="telefonos" maxlength="150" class="form-control" value="#<@('./telefonos')>")
                                         }
                                     }
@@ -339,7 +339,7 @@ module "form.dk"
                                     {
                                         div(class="col-12")
                                         {
-                                            label{"Fax:"}
+                                            label{small(class="text-secondary"){$"Fax:"}}
                                             input(type="text" name="fax" maxlength="150" class="form-control" value="#<@('./fax')>")
                                         }
                                     }
@@ -347,7 +347,7 @@ module "form.dk"
                                     {
                                         div(class="col-12")
                                         {
-                                            label{"E-mail:"}
+                                            label{small(class="text-secondary"){$"E-mail:"}}
                                             input(type="text" name="email" class="form-control" maxlength="80" value="#<@('./email')>")
                                         }
                                     }
@@ -355,7 +355,7 @@ module "form.dk"
                                     {
                                         div(class="col-12")
                                         {
-                                            label{"Sitio web:"}
+                                            label{small(class="text-secondary"){$"Sitio web:"}}
                                             input(type="text" name="website" maxlength="150" class="form-control" value="#<@('./website')>")
                                         }
                                     }
@@ -363,14 +363,19 @@ module "form.dk"
                                     {
                                         div(class="col-12")
                                         {
-                                            label{"Contacto:"}
+                                            label{small(class="text-secondary"){$"Contacto:"}}
                                             // ##
                                             // do uie.dbSelect(def_contacto)
                                             // ##
-                                            div(class="p-2 m-0 d-flex align-items-end")
+                                            div(class="p-2 m-0 d-flex align-items-end gap-2")
                                             {
                                                 input(type="text" readonly="true" name="contacto1" data="#<@('./contacto1/sys_pk')>" id="contacto1" class="form-control" value="#<@('./contacto1/nombre')>")
-                                                button(type="button" class="btn btn-primary" onclick="showmodalcontactos('contacto1')"){"Buscar"}
+                                                button(type="button" class="btn btn-primary d-flex align-items-center gap-2" onclick="showmodalcontactos('contacto1')"){
+                                                    $"Buscar"
+                                                    svg(xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"){
+                                                        path(d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z")
+                                                    }
+                                                }
                                             }
                                             
                                         }
@@ -388,7 +393,7 @@ module "form.dk"
                                     {
                                         div(class="col-12")
                                         {
-                                            label{"Agente:"}
+                                            label{small(class="text-secondary"){$"Agente:"}}
                                             ##
                                             do uie.dbSelect(def_agente)
                                             ##
@@ -399,7 +404,7 @@ module "form.dk"
                                     {
                                         div(class="col-12")
                                         {
-                                            label{"Divisa:"}
+                                            label{small(class="text-secondary"){$"Divisa:"}}
                                             ##
                                             do uie.dbSelect(def_divisa)
                                             ##
@@ -410,7 +415,7 @@ module "form.dk"
                                     {
                                         div(class="col-8")
                                         {
-                                            label{"Precio:"}
+                                            label{small(class="text-secondary"){$"Precio:"}}
                                             #!
                                             precio=parse.num(ifstr(@('#./precio')==0,6,@('#./precio')))
                                             #$
@@ -442,7 +447,7 @@ module "form.dk"
                                         }
                                         div(class="col-4")
                                         {
-                                            label{"%Descuento:"}
+                                            label{small(class="text-secondary"){$"%Descuento:"}}
                                             input(type="number" name="descuento" min="0" class="form-control" value="#<@('#./descuento'):#,#.00>")
                                         }
                                     }
@@ -460,18 +465,18 @@ module "form.dk"
                                             ismayor=@true
                                         }
                                         ##
-                                        div(class="col-12")
+                                        div(class="col-12 mb-3")
                                         {
                                             input(class="form-check-input" type="checkbox" "#<ifstr(ismenor || ismayor,'checked','')>"="true" value="" id="flexCheckDefault")
-                                            label(class="form-check-label" "for"="flexCheckDefault"){"Otorgar crédito:"}
+                                            label(class="form-check-label" "for"="flexCheckDefault"){small(class="text-secondary ms-1"){$" Otorgar crédito:"}}
                                         }
                                         hr(class="col-12"){$""}
-                                        div(class="col-8" style="background:#F2F2F2")
+                                        div(class="col-8 pt-2 pb-2" style="background:#F2F2F2")
                                         {
                                             input(class="form-check-input" type="radio" "#<ifstr(ismenor,'checked','')>"="true" value="" name="checkLimitCredit" id="checkLimitCredit")
-                                            label(class="form-check-label" style="margin-right:10px" "for"="checkLimitCredit"){"Ilimitado"}
+                                            label(class="form-check-label" style="margin-right:10px" "for"="checkLimitCredit"){small(class="text-secondary ms-1"){$"Ilimitado"}}
                                             input(class="form-check-input" "#<ifstr(ismayor,'checked','')>"="true" type="radio" value="" name="checkLimitCredit" id="checkLimitCredit1")
-                                            label(class="form-check-label" "for"="checkLimitCredit1"){"Límite"}
+                                            label(class="form-check-label" "for"="checkLimitCredit1"){small(class="text-secondary ms-1"){$"Límite"}}
                                             input(class="form-control form-control-sm"  name="LimiteCredito" value="#<@('#./limitecredito'):#.00>" id="LimiteCredito" type="hidden")
                                         }
                                             
@@ -481,7 +486,7 @@ module "form.dk"
                                     {
                                         div(class="col-12")
                                         {
-                                            label{"Días de crédito:"}
+                                            label{small(class="text-secondary"){$"Días de crédito:"}}
                                             input(type="number" maxlength="11" name="diascredito" class="form-control" value="#<ifstr(@('#./diascredito')==0,30,@('#./diascredito'))>")
                                         }
                                     }
@@ -489,7 +494,7 @@ module "form.dk"
                                     {
                                         div(class="col-12")
                                         {
-                                            label{"Cuenta contable:"}
+                                            label{small(class="text-secondary"){$"Cuenta contable:"}}
                                             input(type="text" name="codcuenta" maxlength="50" class="form-control" value="#<@('./codcuenta')>")
                                         }
                                     }
@@ -497,7 +502,7 @@ module "form.dk"
                                     {
                                         div(class="col-12")
                                         {
-                                            label{"Zona:"}
+                                            label{small(class="text-secondary"){$"Zona:"}}
                                             ##
                                             do uie.dbSelect(def_zona)
                                             ##
@@ -508,7 +513,7 @@ module "form.dk"
                                     {
                                         div(class="col-12")
                                         {
-                                            label{"Estatus:"}
+                                            label{small(class="text-secondary"){$"Estatus:"}}
                                             ##
                                             do uie.dbSelect(def_status)
                                             ##
@@ -520,7 +525,7 @@ module "form.dk"
                                     {
                                         div(class="col-12")
                                         {
-                                            label{"Saldo por cobrar:"}
+                                            label{small(class="text-secondary"){$"Saldo por cobrar:"}}
                                             input(type="number" readonly="true" name="saldo" class="form-control" value="#<@('#./saldo'):#.00>")
                                         }
                                     }
@@ -529,12 +534,12 @@ module "form.dk"
                                     {
                                         div(class="col-12")
                                         {
-                                            label{"Saldo en monedero:"}
+                                            label{small(class="text-secondary"){$"Saldo en monedero:"}}
                                             input(type="number" readonly="true" name="monedero" class="form-control" value="#<@('#./monedero'):#.00>")
                                         }
                                         div(class="col-12")
                                         {
-                                            label{"Puntos disponibles:"}
+                                            label{small(class="text-secondary"){$"Puntos disponibles:"}}
                                             input(type="number"  readonly="true" name="puntos" class="form-control" value="#<@('#./saldopuntos'):#.00>")
                                         }
                                     }
@@ -560,15 +565,20 @@ module "form.dk"
                                     {
                                         div(class="col-12")
                                         {
-                                            label{"Contacto 2:"}
+                                            label{small(class="text-secondary"){$"Contacto 2:"}}
                                             // ##
                                             // def_contacto<"id">:"contacto2"
                                             // do uie.dbSelect(def_contacto)
                                             // ##
-                                            div(class="p-2 m-0 d-flex align-items-end")
+                                            div(class="p-2 m-0 d-flex align-items-end gap-2")
                                             {
                                                 input(type="text" readonly="true" name="contacto2" data="#<@('./contacto2/sys_pk')>" id="contacto2" class="form-control" value="#<@('./contacto2/nombre')>")
-                                                button(type="button" class="btn btn-primary" onclick="showmodalcontactos('contacto2')"){"Buscar"}
+                                                button(type="button" class="btn btn-primary d-flex align-items-center gap-2" onclick="showmodalcontactos('contacto2')"){
+                                                    $"Buscar"
+                                                    svg(xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"){
+                                                        path(d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z")
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -576,15 +586,20 @@ module "form.dk"
                                     {
                                         div(class="col-12")
                                         {
-                                            label{"Contacto 3:"}
+                                            label{small(class="text-secondary"){$"Contacto 3:"}}
                                             // ##
                                             // def_contacto<"id">:"contacto3"
                                             // do uie.dbSelect(def_contacto)
                                             // ##
-                                            div(class="p-2 m-0 d-flex align-items-end")
+                                            div(class="p-2 m-0 d-flex align-items-end gap-2")
                                             {
                                                 input(type="text" readonly="true" name="contacto2" data="#<@('./contacto3/sys_pk')>" id="contacto3" class="form-control" value="#<@('./contacto3/nombre')>")
-                                                button(type="button" class="btn btn-primary" onclick="showmodalcontactos('contacto3')"){"Buscar"}
+                                                button(type="button" class="btn btn-primary d-flex align-items-center gap-2" onclick="showmodalcontactos('contacto3')"){
+                                                    $"Buscar"
+                                                    svg(xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"){
+                                                        path(d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z")
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -593,7 +608,7 @@ module "form.dk"
                                 {
                                     div(class="card-header bg-transparent")
                                     {
-                                        h6{$"Domicilio 2(alterno)"}
+                                        h6{small(class="text-secondary"){$"Domicilio 2(alterno)"}}
                                     }
                                     div(class="card-body")
                                     {
@@ -601,7 +616,7 @@ module "form.dk"
                                         {
                                             div(class="col-6")
                                             {
-                                                label{"País:"}
+                                                label{small(class="text-secondary"){$"País:"}}
                                                 ##
                                                 def_pais<"id">:"domicilio_pais2"
                                                 def_pais<"selected">:@("./estado1/IPais")
@@ -611,7 +626,7 @@ module "form.dk"
                                             }
                                             div(class="col-6")
                                             {
-                                                label{"Estado:"}
+                                                label{small(class="text-secondary"){$"Estado:"}}
                                                 select(id="estado2" name="iestado2" class="form-select"){""}
                                                 // input(type="text" name="general_codigo" class="form-control" value="#<@('./tratamiento')>")
                                             }
@@ -620,12 +635,12 @@ module "form.dk"
                                         {
                                             div(class="col-12")
                                             {
-                                                label{"Ciudad:"}
+                                                label{small(class="text-secondary"){$"Ciudad:"}}
                                                 select(id="ciudad2" name="iciudad2" class="form-select"){""}
                                                 // input(type="text" name="general_codigo" class="form-control" value="#<@('./tratamiento')>")
                                             }
                                         }
-                                        p{"Dirección:"}
+                                        h6(class="m-3}"){$"Dirección:"}
                                         div(class="row m-2")
                                         {
                                              #!
@@ -642,17 +657,17 @@ module "form.dk"
                                             #$
                                             div(class="col-6")
                                             {
-                                                label{"Calle:"}
+                                                label{small(class="text-secondary"){$"Calle:"}}
                                                 input(type="text" name="calle2" class="form-control" value="#<calle>")
                                             }
                                             div(class="col-3")
                                             {
-                                                label{"No. ext:"}
+                                                label{small(class="text-secondary"){$"No. ext:"}}
                                                 input(type="text" name="next2" class="form-control" value="#<no_ext>")
                                             }
                                             div(class="col-3")
                                             {
-                                                label{"No int:"}
+                                                label{small(class="text-secondary"){$"No int:"}}
                                                 input(type="text" name="nint2" class="form-control" value="#<no_int>")
                                             }
                                         }
@@ -660,7 +675,7 @@ module "form.dk"
                                         {
                                             div(class="col-12")
                                             {
-                                                label{"Colonia:"}
+                                                label{small(class="text-secondary"){$"Colonia:"}}
                                                 input(type="text" name="colonia2" maxlength="150" class="form-control" value="#<@('./domicilio2/colonia')>")
                                             }
                                         }
@@ -668,12 +683,12 @@ module "form.dk"
                                         {
                                             div(class="col-4")
                                             {
-                                                label{"Código postal:"}
+                                                label{small(class="text-secondary"){$"Código postal:"}}
                                                 input(type="text" name="codpos2" maxlength="10" class="form-control" value="#<@('./domicilio2/codpos')>")
                                             }
                                             div(class="col-8")
                                             {
-                                                label{"Tel:"}
+                                                label{small(class="text-secondary"){$"Tel:"}}
                                                 input(type="text" name="telefonos2" maxlength="150" class="form-control" value="#<@('./domicilio2/telefonos')>")
                                             }
                                         }
@@ -683,7 +698,7 @@ module "form.dk"
                                 {
                                     div(class="card-header bg-transparent")
                                     {
-                                        h6{$"Domicilio 3(alterno)"}
+                                        h6{small(class="text-secondary"){$"Domicilio 3(alterno)"}}
                                     }
                                     div(class="card-body")
                                     {
@@ -691,7 +706,7 @@ module "form.dk"
                                         {
                                             div(class="col-6")
                                             {
-                                                label{"País:"}
+                                                label{small(class="text-secondary"){$"País:"}}
                                                 ##
                                                 def_pais<"id">:"domicilio_pais3"
                                                 def_pais<"selected">:@("./estado2/IPais")
@@ -702,7 +717,7 @@ module "form.dk"
                                             }
                                             div(class="col-6")
                                             {
-                                                label{"Estado:"}
+                                                label{small(class="text-secondary"){$"Estado:"}}
                                                 select(id="estado3" name="iestado3" class="form-select"){""}
 
                                                 // input(type="text" name="general_codigo" class="form-control" value="#<@('./tratamiento')>")
@@ -712,13 +727,13 @@ module "form.dk"
                                         {
                                             div(class="col-12")
                                             {
-                                                label{"Ciudad:"}
+                                                label{small(class="text-secondary"){$"Ciudad:"}}
                                                 select(id="ciudad3" name="iciudad3" class="form-select"){""}
 
                                                 // input(type="text" name="general_codigo" class="form-control" value="#<@('./tratamiento')>")
                                             }
                                         }
-                                        p{"Dirección:"}
+                                        h6(class="m-3"){"Dirección:"}
                                         div(class="row m-2")
                                         {
                                              #!
@@ -735,17 +750,17 @@ module "form.dk"
                                             #$
                                             div(class="col-6")
                                             {
-                                                label{"Calle:"}
+                                                label{small(class="text-secondary"){$"Calle:"}}
                                                 input(type="text" name="clle3" class="form-control" value="#<calle>")
                                             }
                                             div(class="col-3")
                                             {
-                                                label{"No. ext:"}
+                                                label{small(class="text-secondary"){$"No. ext:"}}
                                                 input(type="text" name="next3" class="form-control" value="#<no_ext>")
                                             }
                                             div(class="col-3")
                                             {
-                                                label{"No int:"}
+                                                label{small(class="text-secondary"){$"No int:"}}
                                                 input(type="text" name="nint3" class="form-control" value="#<no_int>")
                                             }
                                         }
@@ -753,7 +768,7 @@ module "form.dk"
                                         {
                                             div(class="col-12")
                                             {
-                                                label{"Colonia:"}
+                                                label{small(class="text-secondary"){$"Colonia:"}}
                                                 input(type="text" name="colonia3" maxlength="150" class="form-control" value="#<@('./domicilio3/colonia')>")
                                             }
                                         }
@@ -761,12 +776,12 @@ module "form.dk"
                                         {
                                             div(class="col-4")
                                             {
-                                                label{"Código postal:"}
+                                                label{small(class="text-secondary"){$"Código postal:"}}
                                                 input(type="text" name="codpos3" maxlength="10" class="form-control" value="#<@('./domicilio3/codpos')>")
                                             }
                                             div(class="col-8")
                                             {
-                                                label{"Tel:"}
+                                                label{small(class="text-secondary"){$"Tel:"}}
                                                 input(type="text" name="telefonos3" maxlength="150" class="form-control" value="#<@('./domicilio3/telefonos')>")
                                             }
                                         }
@@ -794,14 +809,14 @@ module "form.dk"
                             input(type="hidden" id="cont1" name="cont1" value="")
                             input(type="hidden" id="cont2" name="cont2" value="")
                             input(type="hidden" id="cont3" name="cont3" value="")
-                            div(class="text-center pt-4")
+                            div(class="text-end pt-4")
                             {
                                 button(type="submit" class="btn btn-primary m-1"){"Guardar"}
                                 #!
                                 uri="../"+filter
                                 if @('parameters/url')!=""{uri=url_dcode(@('parameters/url'))}
                                 #$
-                                a(class="btn btn-danger m-1" href="#<uri>" ){"Cancelar"}
+                                a(class="btn btn-light border-secondary m-1" href="#<uri>" ){"Cancelar"}
                             }
                         }
                     }

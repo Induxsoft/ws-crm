@@ -1263,11 +1263,13 @@ style
     }
         .color
         {
-            padding:15px;
+            width:18px;
+            height:12px;
+            border-radius:5px;
         }
         #group-colors
         {
-            margin-left:2px;
+            gap:4px;
         }
         #load
         {

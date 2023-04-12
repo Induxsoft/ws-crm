@@ -72,24 +72,18 @@ module "list"
 	    
 	}
 
-	#$
-	div(class="container-fluid")
+	#$ div(class="container-lg pt-1 ps-3 pe-3" style="background-color:#F5F5F5; min-height:94%;" id="container-clientes")
 	{
-		#!
-		#include "entity_js.dkl"
+		#! #include "entity_js.dkl"
 		do form.search_client()
-		#$
-		div(class="card")
-		{
-			#!
-			do list.filter_clients()
-		}
-		#!
 		
-		include @path_common
-	}
-	
+		#$ div(class="bg-white mt-1")
+		{
+			#! do list.filter_clients()
+		}
 
-	#!
-	 do @context.end()
+		#! include @path_common
+	}
+
+	#! do @context.end()
 }

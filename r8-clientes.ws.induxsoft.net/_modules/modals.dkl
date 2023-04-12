@@ -2,7 +2,7 @@
 module
 {
     ##
-        div(class="modal fade" id="modalmsgSer" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true")
+        div(class="modal fade" id="modalmsgSer" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-bs-backdrop"="false")
         {
             div(class= "modal-dialog modal-sm modal-dialog-centered" role ="document")
             {
@@ -28,7 +28,7 @@ module
             }		
         }
         
-        div(class="modal fade" id="modalglobal" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true")
+        div(class="modal fade" id="modalglobal" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-bs-backdrop"="false")
         {
             div(class= "modal-dialog modal-md modal-dialog-centered" role ="document")
             {
@@ -74,7 +74,7 @@ module
             }		
         }
         // ******************************************* modal de loading********************
-        div(class="modal fade" style="top:-270;pointer-events: none;z-index:100000" id="modalload" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-backdrop"="static")
+        div(class="modal fade" style="top:-270;pointer-events: none;z-index:100000" id="modalload" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-bs-backdrop"="false")
         {
             div(class= "modal-dialog modal-sm modal-dialog-centered" role ="document")
             {
@@ -105,7 +105,7 @@ module
         }
         style{$'.modal-backdrop { opacity: .20 !important; }'}
         //************************************ modal para buscar clientes *********************************************
-        div(class="modal fade" style="pointer-events: none;" id="modalclientes" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-backdrop"="static")
+        div(class="modal fade" style="pointer-events: none;" id="modalclientes" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-bs-backdrop"="false" )
         {
             div(class= "modal-dialog modal-lg modal-dialog-centered" role ="document")
             {
@@ -160,7 +160,7 @@ module
             }       
         }
         //****************************modal para adjuntos de cada caso************************
-        div(class="modal fade" style="pointer-events: none;" id="modaladjuntos" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-backdrop"="static")
+        div(class="modal fade" style="pointer-events: none;" id="modaladjuntos" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-bs-backdrop"="false")
         {
             div(class= "modal-dialog modal-lg modal-dialog-centered" role ="document")
             {
@@ -222,7 +222,7 @@ module
         }
 
         // *********************************** modal editar/agregar datos de los adjuntos**************************
-        div(class="modal fade" id="modaladdupdateadjuntos" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-backdrop"="static")
+        div(class="modal fade" id="modaladdupdateadjuntos" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-bs-backdrop"="false")
         {
             div(class= "modal-dialog modal-md modal-dialog-centered" role ="document")
             {
@@ -283,7 +283,7 @@ module
         }
 
         //****************************************************modal para catalogos de prioridad**************************
-        div(class="modal fade" style="pointer-events: none;" id="modal_catalog_prioridad" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-backdrop"="static")
+        div(class="modal fade" style="pointer-events: none;" id="modal_catalog_prioridad" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-bs-backdrop"="false")
         {
             div(class= "modal-dialog modal-lg modal-dialog-centered" role ="document")
             {
@@ -332,7 +332,7 @@ module
             }       
         }
         ///************************editar catalogos de prioridades********************
-        div(class="modal fade" style="pointer-events: none;" id="modal_edit_catalog_prioridad" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-backdrop"="static")
+        div(class="modal fade" style="pointer-events: none;" id="modal_edit_catalog_prioridad" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-bs-backdrop"="false")
         {
             div(class= "modal-dialog modal-md modal-dialog-centered" role ="document")
             {
@@ -381,7 +381,7 @@ module
         // *****************************************************************************************
 
         //*******************************************************tipos de casos***************************************
-        div(class="modal fade" style="pointer-events: none;" id="modal_tipos_casos" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-backdrop"="static")
+        div(class="modal fade" style="pointer-events: none;" id="modal_tipos_casos" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-bs-backdrop"="false")
         {
             div(class= "modal-dialog modal-md modal-dialog-centered" role ="document")
             {
@@ -426,7 +426,7 @@ module
         }
 
         // *****************************edit tipo de caso*********************************
-        div(class="modal fade" style="pointer-events: none;" id="modal_edit_tipocaso" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-backdrop"="static")
+        div(class="modal fade" style="pointer-events: none;" id="modal_edit_tipocaso" tabindex="-1" role="dialog" "aria-labelledby"="modalforms" "aria-hidden"="true" "data-keyboard"="false" "data-bs-backdrop"="false")
         {
             div(class= "modal-dialog modal-md modal-dialog-centered" role ="document")
             {
