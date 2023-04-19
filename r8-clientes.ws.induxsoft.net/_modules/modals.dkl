@@ -164,11 +164,11 @@ module
         {
             div(class= "modal-dialog modal-lg modal-dialog-centered" role ="document")
             {
-                div(class="modal-content")
+                div(class="modal-content border shadow shadow-sm")
                 {
                     div(class="modal-header")
                     {
-                        h5(class="modal-title" id="textomdl"){"Explorador de documentos."}
+                        h6(class="modal-title" id="textomdl"){"Explorador de documentos."}
                         button(type="button" id="" onclick="hidemodalAdjuntos()" class="" style="border: 1px solid #CED4DA;background: transparent;" "data-dismiss"="modal" "aria-label"="Close")
                         {
                             span ("aria-hidden"="true") {$"&times;"}
@@ -176,20 +176,19 @@ module
                     }
                     div(class="modal-body" id="bdymsg")
                     {
-                       div(class="card table-responsive" style="max-height:50vh")
+                       div(class="table-responsive" style="max-height:50vh")
                        {
-                            div(class="card")
+                            div(class="p-2 m-0 d-flex align-items-center mb-2")
                             {
-                                div(class="p-2 m-0 d-flex align-items-center")
-                                {
-                                    button(class="btn btn-primary" onclick="addDocument()"){"Agregar Documento"}
-                                    // button(class="btn btn-secondary" style="margin-left:2px; margin-right:2px" ){"Modificar"}
-                                    // button(class="btn btn-danger"){"Eliminar"}
+                                button(class="btn btn-sm btn-light bg-white border-0 d-flex align-items-center gap-2" onclick="addDocument()"){
+                                    svg(xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-plus" viewBox="0 0 16 16"){
+                                        path(d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z")
+                                        path(d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z")
+                                    }
+                                    $"Agregar Documento"
                                 }
-                                
-                                $""
                             }
-                            div(class="card table-responsive" style="max-height:50vh")
+                            div(class="table-responsive" style="min-height:40vh;max-height:50vh;")
                             {
                                 table(class="table table-hover")
                                 {
@@ -215,7 +214,7 @@ module
                     }
                     div(class="modal-footer" id="ftrAddClt")
                     {
-                        button(type="button" id="" class="btn btn-danger " onclick="hidemodalAdjuntos()" "data-dismiss"="modal") { "Cerrar"}
+                        button(type="button" id="" class="btn btn-sm btn-light" onclick="hidemodalAdjuntos()" "data-dismiss"="modal") { "Cerrar"}
                     }
                 }
             }       
@@ -230,7 +229,7 @@ module
                 {
                     div(class="modal-header")
                     {
-                        h5(class="modal-title" id="titleadjunto"){""}
+                        h6(class="modal-title" id="titleadjunto"){$"Agregar documento"}
                         button(type="button" onclick="hideModifDataAdjuntos()" style="border: 1px solid #CED4DA;background: transparent;" class="close" "data-dismiss"="modal" "aria-label"="Close")
                         {
                             span ("aria-hidden"="true") {$"&times;"}
@@ -242,32 +241,32 @@ module
                         {
                             div(class="card-body")
                             {
-                                label{"Nombre:"}
-                                input(class="form-control" data="" id="txtNombreAdjunto")
-                                label{"Descripción:"}
-                                input(class="form-control" id="txtDescripcionAdjunto")
-                                label{"Palabras claves:"}
-                                textarea(class="form-control" id="txtpalabrasclaves"){""}
+                                label{small(class="text-secondary"){$"Nombre:"}}
+                                input(class="form-control form-control-sm mb-2 mt-1" data="" id="txtNombreAdjunto")
+                                label{small(class="text-secondary"){$"Descripción:"}}
+                                input(class="form-control form-control-sm mb-2 mt-1" id="txtDescripcionAdjunto")
+                                label{small(class="text-secondary"){$"Palabras claves:"}}
+                                textarea(class="form-control form-control-sm mb-2 mt-1" id="txtpalabrasclaves"){""}
 
-                                div(class="p-2 m-0 d-flex align-items-center div-ocult")
+                                div(class="p-2 m-0 d-flex align-items-center gap-2 div-ocult")
                                 {
                                     input(type="radio" class="rdiImport" value="import" checked="true" name="rdiImport" id="rdoimportar")
-                                    label("for"="rdoimportar"){"Importar desde archivo"}
+                                    label("for"="rdoimportar"){small(class="text-secondary"){$"Importar desde archivo"}}
                                 }
-                                div(class="p-2 m-0 d-flex align-items-center div-ocult")
+                                div(class="p-2 pt-1 m-0 mb-2 d-flex align-items-center div-ocult")
                                 {
-                                    input(class="form-control" type="file" id="txtinportfile")
+                                    input(class="form-control form-control-sm" type="file" id="txtinportfile")
                                     // button(class="btn btn-success"){"Examinar"}
                                 }
-                                div(class="p-2 m-0 d-flex align-items-center div-ocult")
+                                div(class="p-2 pt-1 m-0 d-flex align-items-center gap-2 div-ocult")
                                 {
                                     input(type="radio" class="rdiImport" value="enlazar" name="rdiImport" id="rdoenlazar")
-                                    label("for"="rdoenlazar"){"Enlazar una url"}
+                                    label("for"="rdoenlazar"){small(class="text-secondary"){$"Enlazar una url"}}
                                 }
-                                div(class="p-2 m-0 d-flex align-items-center div-ocult")
+                                div(class="p-2 pt-1 m-0 mb-2 d-flex align-items-center gap-2 div-ocult")
                                 {
-                                    label{"URL:"}
-                                    input(class="form-control" disabled="true" id="txtenlazarfile")
+                                    label{small(class="text-secondary"){$"URL:"}}
+                                    input(class="form-control form-control-sm" disabled="true" id="txtenlazarfile")
                                 }
                             }
                         }
@@ -275,8 +274,8 @@ module
                     }
                     div(class="modal-footer" id="ftrAddClt")
                     {
-                        button(type="button" class="btn btn-primary" id="btnaddupd"){ "Aceptar"}
-                        button(type="button" class="btn btn-danger" onclick="hideModifDataAdjuntos()" "data-dismiss"="modal"){ "Cerrar"}
+                        button(type="button" class="btn btn-sm btn-primary" id="btnaddupd"){ "Aceptar"}
+                        button(type="button" class="btn btn-sm btn-light" onclick="hideModifDataAdjuntos()" "data-dismiss"="modal"){ "Cerrar"}
                     }
                 }
             }       

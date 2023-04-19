@@ -29,6 +29,12 @@ module "config.dkl"
 			@"type":"Clientes"
 			@"id":"name_client"
 		}
+		new _case_admin
+		{
+			@"link":"Administración de casos"
+			@"target":"/"+@ws+"/cliente/_admin/?token="+@@(@http_context,"$session/user/ids")+ifstr(@@(@http_context,"request/get/params")!="","&params="+@@(@http_context,"request/get/params"),"")
+			@"type":"Casos"
+		}
 		new _case
 		{
 			@"link":ifstr(@@(@http_context,"request/get/_case")=="","Caso","Caso "+@@(@http_context,"request/get/_case"))
@@ -46,7 +52,8 @@ module "config.dkl"
 		ref lista_address=list.create()
 		if @ws!=""{do list.add(lista_address,addres)}
 		if @ws!=""{do list.add(lista_address,addres_menu)}
-		if @@(@http_context,"request/get/_key")!=""{do list.add(lista_address,dx)}
+		if @@(@http_context,"request/get/_entity_id")=="_detail"{do list.add(lista_address,dx)}
+		if @@(@http_context,"request/get/_entity_id")=="_admin"{do list.add(lista_address,_case_admin)}
 		if @@(@http_context,"request/get/_case")!=""{do list.add(lista_address,_case)}
 		if @@(@http_context,"request/get/_entity_id")=="_new"{do list.add(lista_address,_new)}
 		if @@(@http_context,"#request/get/_entity_id")>0{do list.add(lista_address,_new)}

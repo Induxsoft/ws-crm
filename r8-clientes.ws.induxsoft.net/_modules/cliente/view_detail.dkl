@@ -253,10 +253,10 @@ module "view-detail"
 	    if @count(@@(table_general,"&datatable"))<=0
 	    {
 	    	#$
-            div(class="text-center mb-2")
-            {
-                h4(style="margin-top:5%"){"Ningún dato encontrado."}
-            }
+            div(class="text-center m-5 text-secondary")
+			{
+				h6{"Ningún dato encontrado."}
+			}
             #!
 	    }else{
 	    	do uie.dbtable(table_general)
@@ -342,7 +342,7 @@ module "view-detail"
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop2" onclick="event.stopPropagation()">
                             <li class="d-flex align-items-center gap-2 p-2">
-                                <a id="btnEditar" href="#" onclick="EditCase(#<@@(row,"sys_pk")>,\'#<@@(row,"cliente")>\')"  class="text-decoration-none text-secondary">
+                                <a id="btnEditar" href="#" onclick="EditCase(#<@@(row,"sys_pk")>,\'#<@@(row,"cliente")>\')"  class="text-decoration-none text-secondary d-flex align-items-center gap-2">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16" style="">
 								  		<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
 									</svg>
@@ -350,7 +350,7 @@ module "view-detail"
 								</a>
                             </li>
                             <li class="d-flex align-items-center gap-2 p-2">
-                                <a href="#" onclick="#<event>" id="btnclose" style="#<style>" class="text-decoration-none text-secondary">
+                                <a href="#" onclick="#<event>" id="btnclose" style="#<style>" class="text-decoration-none text-secondary d-flex align-items-center gap-2">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
 										<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path>
 									</svg>
@@ -389,6 +389,20 @@ module "view-detail"
     		case 65535{return "#ffc107"}//amarillo
     		case 49152{return "#28a745"}//verde
     		case 16777215{return "#FCFCFC"}//blanco sin color
+    		default{return ""}
+    	}
+    }
+
+	#!
+    get.colorword::color
+    {
+    	switch color
+    	{
+    		case 255{return "#fff"}
+    		case 16711680{return "#fff"}
+    		case 65535{return "#000"}
+    		case 49152{return "#fff"}
+    		case 16777215{return "#000"}
     		default{return ""}
     	}
     }
@@ -504,10 +518,10 @@ module "view-detail"
 	    if @count(@@(table_general,"&datatable"))<=0
 	    {
 	    	#$
-            div(class="text-center mb-2")
-            {
-                h4(style="margin-top:5%"){"Ningún dato encontrado."}
-            }
+            div(class="text-center m-5 text-secondary")
+			{
+				h6{"Ningún dato encontrado."}
+			}
             #!
 	    }else{
 	    	do uie.dbtable(table_general)
@@ -548,10 +562,10 @@ module "view-detail"
 	    if @count(@@(table_general,"&datatable"))<=0
 	    {
 	    	#$
-            div(class="text-center mb-2")
-            {
-                h4(style="margin-top:5%"){"Ningún dato encontrado."}
-            }
+            div(class="text-center m-5 text-secondary")
+			{
+				h6{"Ningún dato encontrado."}
+			}
             #!
 	    }else{
 	    	do uie.dbtable(table_general)
@@ -640,10 +654,10 @@ module "view-detail"
 	    if @count(@@(table_general,"&datatable"))<=0
 	    {
 	    	#$
-            div(class="text-center mb-2")
-            {
-                h4(style="margin-top:5%"){"Ningún dato encontrado."}
-            }
+            div(class="text-center m-5 text-secondary")
+			{
+				h6{"Ningún dato encontrado."}
+			}
             #!
 	    }else{
 	    	do uie.dbtable(table_general)
@@ -660,7 +674,7 @@ module "view-detail"
 	        @"id":"tipocaso"
 	        member "attributes"
 	        {
-	            @"class":"form-select selectTipocaso"
+	            @"class":"form-select form-select-sm selectTipocaso"
 	            @"name":"tipo"
 	        }
 	        @"first_text":" "
@@ -785,7 +799,7 @@ module "view-detail"
 	        @"id":"prioridad"
 	        member "attributes"
 	        {
-	            @"class":"form-select"
+	            @"class":"form-select form-select-sm"
 	            @"name":"tipo"
 	        }
 	        @"first_text":" "
@@ -815,7 +829,7 @@ module "view-detail"
 	        @"id":"selectDuration"
 	        member "attributes"
 	        {
-	            @"class":"form-select"
+	            @"class":"form-select form-select-sm"
 	            @"name":"tipo"
 	        }
 	        @"first_text":" "
@@ -837,7 +851,7 @@ module "view-detail"
 	        @"id":"selectasignado"
 	        member "attributes"
 	        {
-	            @"class":"form-select"
+	            @"class":"form-select form-select-sm"
 	            @"name":"tipo"
 	        }
 	        @"first_text":" "
@@ -901,27 +915,36 @@ module "view-detail"
 		for i=0;i<@count(@("&./comentarios"))
 		{
 			ref itm=@item(@("&./comentarios"),i)
-			comentarios=comentarios+@@(itm,"$usuario")+"\n" +@@(itm,"$mensaje")+"\n\r"
+			//comentarios=comentarios+@@(itm,"$usuario")+"\n" +@@(itm,"$mensaje")+"\n\r"
+			comentarios=comentarios+ftext('
+				<div class="p-3 mt-1 border-bottom">
+					<small class="text-secondary">#<@@(itm,"$usuario")></small>
+					<br/>
+					<small>#<@@(itm,"$mensaje")></small>
+				</div>
+			')
 		}
 		#$
-		div(class="card col-lg-8 " style="height:100%")
+		div(class="col-lg-8 p-0" style="height:100%")
 		{
-			div(class="mt-2")
+			// label(style="color:#0000FF"){"#<@('$./codigo') +' '+@('$./nombre')+' '+@('$./rfc')>"}
+			// br{}
+				
+			#!
+			domicilio="Domicilio: "
+			domicilio=domicilio + ifstr(@('$./domicilio/direccion')!="" && trim(@('$./domicilio/direccion'))!="||||||",@('$./domicilio/direccion')+", ","") 
+			domicilio=domicilio + ifstr(@('$./domicilio/codpos')!="",@('$./domicilio/codpos')+", ",@('$./domicilio/codpos'))
+			domicilio=domicilio + ifstr(@('$./domicilio/colonia')!=""," Colonia: "+@('$./domicilio/colonia')+", ","")	
+			domicilio=domicilio + ifstr(@("$./ciudad/nombre")!="",@("$./ciudad/nombre")+";","")
+			domicilio=domicilio + @("$./estado/nombre")
+			#$
+			div(class="p-4 bg-white border-bottom")
 			{
-				label(style="color:#0000FF"){"#<@('$./codigo') +' '+@('$./nombre')+' '+@('$./rfc')>"}
-				br{}
-				#!
-				domicilio="Domicilio: "
-				domicilio=domicilio + ifstr(@('$./domicilio/direccion')!="" && trim(@('$./domicilio/direccion'))!="||||||",@('$./domicilio/direccion')+", ","") 
-				domicilio=domicilio + ifstr(@('$./domicilio/codpos')!="",@('$./domicilio/codpos')+", ",@('$./domicilio/codpos'))
-				domicilio=domicilio + ifstr(@('$./domicilio/colonia')!=""," Colonia: "+@('$./domicilio/colonia')+", ","")	
-				domicilio=domicilio + ifstr(@("$./ciudad/nombre")!="",@("$./ciudad/nombre")+";","")
-				domicilio=domicilio + @("$./estado/nombre")
-				#$
-				label{"#<domicilio>"}br{}br{}
-				div(class="card table-responsive")
+				small(class="text-secondary"){"#<domicilio>"}
+				hr{$""}
+				div(class="table-responsive")
 				{
-					table(class="table table-hover")
+					table(class="table table-hover" style="font-size: .9rem;")
 					{
 						tr{
 							td{"Saldo actual: "}
@@ -943,77 +966,87 @@ module "view-detail"
 						}
 					}
 				}
-				br{}
-				// label(style="margin-right:20px"){"Saldo actual: "b{"$ #<@('#./saldo'):#,#.00>"}}
-				// label{"Saldo vencido: "b{"$ #<@('#./saldovenc'):#,#.00>"}}br{}
-				// label(style="margin-right:20px"){"Acumulado de ventas en el año: "b{"$ #<@('#./vtnanio'):#,#.00>"}}
-				// label{"Ventas del año pasado: "b{"$ #<@('#./vtnaniopas'):#,#.00>"}}br{}
-				// label(style="margin-right:20px"){"Promedio de ventas mensual año actual: "b{"$ #<@('#./vtnmesaniocurrent'):#,#.00>"}}
-				// label{"Promedio de ventas mensual año pasado: "b{"$ #<@('#./vtnmesaniopas'):#,#.00>"}}
+			}
+			
+			// label(style="margin-right:20px"){"Saldo actual: "b{"$ #<@('#./saldo'):#,#.00>"}}
+			// label{"Saldo vencido: "b{"$ #<@('#./saldovenc'):#,#.00>"}}br{}
+			// label(style="margin-right:20px"){"Acumulado de ventas en el año: "b{"$ #<@('#./vtnanio'):#,#.00>"}}
+			// label{"Ventas del año pasado: "b{"$ #<@('#./vtnaniopas'):#,#.00>"}}br{}
+			// label(style="margin-right:20px"){"Promedio de ventas mensual año actual: "b{"$ #<@('#./vtnmesaniocurrent'):#,#.00>"}}
+			// label{"Promedio de ventas mensual año pasado: "b{"$ #<@('#./vtnmesaniopas'):#,#.00>"}}
 
-				label(class="text-center" style="position: sticky !important;top:0 !important;background-color:#fff;text-align:center;display:block;background:#198754;margin-bottom:1px"){b{"Antiguedad de saldo"}}
-				div(class="table-responsive" style="max-height:40vh" id="tableantsld"){
+			div(class="p-4 bg-white mt-2 border-bottom")
+			{
+				small(class="fw-bold"){$"Antiguedad de saldo"}
+				hr{$""}
+				div(class="table-responsive" style="min-height:13vh;max-height:40vh" id="tableantsld"){
 					div(class="d-flex justify-content-center placeholder-glow")
-                    {
-                        div(class="card placeholder" style="width:100%;margin-top:10px;text-align:center;height: 15rem;")
-                        {
-                            div(class="justify-content-center" style="margin-top:10%;")
-                            {
-                                span(class="loading style-2" style="border-color:cyan transparent;"){""}br{}
-                                b(id="load" style="color:white"){"Cargando..."}   
-                            }
-                        }
-                    }
+					{
+						div(class="card placeholder" style="width:100%;margin-top:10px;text-align:center;height: 15rem;")
+						{
+							div(class="justify-content-center" style="margin-top:10%;")
+							{
+								span(class="loading style-2" style="border-color:cyan transparent;"){""}br{}
+								b(id="load" style="color:white"){"Cargando..."}   
+							}
+						}
+					}
 					// #!
 					// do table.general_antigsaldo()
 					// #$
 					$""
 				}
-				label(class="text-center" style="text-align:center;display:block;background:#198754;margin-bottom:1px"){b{"Listado de últimas 10 ventas"}}
-				div(class="table-responsive" style="min-height:40vh;max-height:40vh" id="tble-ultvnts"){
+			}
+			
+			div(class="p-4 bg-white mt-2 mb-2")
+			{
+				small(class="fw-bold"){$"Listado de últimas 10 ventas"}
+				hr{$""}
+				div(class="table-responsive" style="min-height:13vh;max-height:18vh;overflow-y:auto;" id="tble-ultvnts"){
 					div(class="d-flex justify-content-center placeholder-glow")
-                    {
-                        div(class="card placeholder" style="width:100%;margin-top:10px;text-align:center;height: 15rem;")
-                        {
-                            div(class="justify-content-center" style="margin-top:10%;")
-                            {
-                                span(class="loading style-2" style="border-color:cyan transparent;"){""}br{}
-                                b(id="load" style="color:white"){"Cargando..."}   
-                            }
-                        }
-                    }
+					{
+						div(class="card placeholder" style="width:100%;margin-top:10px;text-align:center;height: 15rem;")
+						{
+							div(class="justify-content-center" style="margin-top:10%;")
+							{
+								span(class="loading style-2" style="border-color:cyan transparent;"){""}br{}
+								b(id="load" style="color:white"){"Cargando..."}   
+							}
+						}
+					}
 					// #!
 					// do table.general()
 					// #$
 					$""
 				}
-				
-				$""
 			}
-			
 		}
-		div(class="d-flex card col-lg-4")
+		div(class="col-lg-4 pe-0")
 		{
-			div(class="d-flex justify-content-center col-lg-12 mt-2" style="width:100%")
+			div(class="p-4 bg-white border-bottom")
 			{
-				div(class="col-lg-10" id="div-cometarios")
+				div(class="d-flex align-items-center gap-2")
 				{
-					textarea(class="form-control" id="Comentario" style="resize:none"){""}	
+					div(id="div-cometarios flex-grow-1" style="width:100%;")
+					{
+						textarea(class="form-control form-control-sm" id="Comentario" style="resize:none" placeholder="Escribir un comentario"){""}	
+					}
+					div
+					{
+						button(class="btn btn-sm btn-primary" id="btn-addComentario" onclick="addComentario()" style="width:100%;height:100%"){"Guardar"}	
+					}
+					
 				}
-				div(class="ml-2 col-lg-2")
+				div(class="col-lg-12 mt-2 mb-3" style="height:61vh; overflow-y:auto;")
 				{
-					button(class="btn btn-success" id="btn-addComentario" onclick="addComentario()" style="width:100%;height:100%"){"Guardar"}	
+					div(class="col-lg-12" style="height:100%")
+					{
+						//textarea(class="form-control" id="txtComentarios"  readonly="true" style="resize:none;min-height:65vh;max-height:75vh;font:message-box;background:white"){"#<comentarios>"}
+						$"#<comentarios>"
+					}
+					
+					$""
 				}
-				
-			}
-			div(class="col-lg-12 mt-2 mb-3" style="height:60vh")
-			{
-				div(class="col-lg-12" style="height:100%")
-				{
-					textarea(class="form-control" id="txtComentarios"  readonly="true" style="resize:none;min-height:75vh;max-height:75vh;font:message-box;background:white"){"#<comentarios>"}
-				}
-				
-				$""
 			}
 		}
 		style

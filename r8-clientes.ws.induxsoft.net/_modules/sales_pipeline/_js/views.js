@@ -175,8 +175,10 @@ var views={
                 var inp=elements[j];
                 if(!cancel)
                     inp.classList.remove("p-event-n");
-                else
+                else{
                     inp.classList.add("p-event-n");
+                    if(togle) togle.classList.add("p-event-n");
+                }
             }
             if(btn!=null)btn.classList.add("hidde_control");
             if(btn_save && !cancel)btn_save.classList.remove("hidde_control");
@@ -243,7 +245,7 @@ var views={
         }
         
         return `<icons class="ico popup"> 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" onclick="views.mostrarMensaje('${idf+uuid}')" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#888" onclick="views.mostrarMensaje('${idf+uuid}')" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z">
                         </path>
                     </svg>
@@ -295,8 +297,7 @@ var views={
         var parent=document.querySelector(uuid);
         views.delete_itemhover();
         if(parent){
-            parent.firstElementChild.classList.add("item_hover");
-            parent.lastElementChild.firstElementChild.classList.add("item_hover");
+            parent.classList.add("item_hover");
         }
 
 
@@ -309,9 +310,7 @@ var views={
                 var stage=list_stages.childNodes[i];
                 if(stage.id!="" && stage.id!="new")
                 {
-                    stage.firstElementChild.firstElementChild.classList.remove("item_hover");
-                    stage.firstElementChild.lastElementChild.firstElementChild.classList.remove("item_hover");
-                
+                    stage.firstElementChild.classList.remove("item_hover");
                 }
             }
         }
@@ -326,14 +325,15 @@ var views={
                 {
                     var head=document.querySelector(`#${parent.id} #head`);
                     var container=document.querySelector(`#${parent.id} .container1`);
+                    var controls=document.querySelector(`#${parent.id} .botn-delete`);
 
                     head.classList.remove("border-right");
                     container.classList.remove("border-right");
-                     head.classList.remove("border-left");
+                    controls.classList.remove("border-right");
+                    head.classList.remove("border-left");
                     container.classList.remove("border-left");
+                    controls.classList.remove("border-left");
                 }
-                
-
             }
         }
     },

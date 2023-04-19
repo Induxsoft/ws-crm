@@ -335,12 +335,29 @@ program
 	get_address::&objs
 	{
 		html=""
-		for i=0;i<@count(objs)
+		url_back = "#"
+		count = @count(objs)
+
+		for i=0;i<count
         {
             ref obj = list.obj(objs,i)
             html=ftext(html+'<span class="nav_span">></span>
              <a class="nav_a" title="#<@@(obj,"type")>" id="#<@@(obj,"id")>" href="#<@@(obj,"target")>">#<@@(obj,"link")></a>')
         }
+
+		if count == 1 {
+			url_back = @@(list.obj(objs,0), "target")
+		}
+		else if count > 1 {
+			url_back = @@(list.obj(objs,count-2), "target")
+		}
+
+		html=html+'<script>
+			$(document).ready(function(){
+				$("#go_back_btn").attr("href","#<url_back>");
+			});
+		</script>'
+		
         return ftext(html)
 	}
 	printNav_Bar::
@@ -349,6 +366,7 @@ program
 		isadmin=@@(@http_context,"#session/get_permission")
 		isleader=@@(@http_context,"#session/get_permission_leader")
 		setting=""
+
 		if field.exist(@http_context,"last_path") && last_path!="" && (isadmin || isleader){
 			setting=ftext('<a title="Ajustes" id="" href="/#<last_path>" style="color: #0d6efd;text-decoration:none;">
 		                    <img height="25"; src="#<@icon_setting>"/>

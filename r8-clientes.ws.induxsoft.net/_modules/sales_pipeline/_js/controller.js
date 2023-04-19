@@ -225,8 +225,8 @@ var controller={
     },
     edit_stage:function(id,btn=null,event,cancel=false)
     {
-    	if(event)
-    		event.stopPropagation();
+    	// if(event)
+    	// 	event.stopPropagation();
 
     	if(!cancel && controller.verify_modify()){
     		return;

@@ -52,12 +52,29 @@
 
 <body style="padding-top:20px;width:100vw;height:100vh;">
     <style>
+        :root{
+            --filter-panel-height: 15.648rem;
+            --table-cases-height: 30rem;
+        }
+        .table-cases-filter-height{
+            height: calc(var(--table-cases-height) - var(--filter-panel-height)) !important;
+        }
         body {
             margin-top: 0;
         }
         #main_navbar {
             opacity: 1;
         }
+        th{font-size:.9rem !important;color:#777 !important;font-weight:400 !important;}
+        tr{font-size:.9rem;}
+        .nav-tabs .nav-link.active{
+            border:none !important;
+            border-bottom:2px solid #0B5ED7 !important;
+            text-decoration: none !important;
+            color: #000 !important;
+            background-color: #F0F8FF !important;
+        }
+        .gray-hover:hover{color:#000 !important;}
 		.placeholder-glow .placeholder
 		{animation: placeholder-glow 2s ease-in-out infinite;}
 		.placeholder {

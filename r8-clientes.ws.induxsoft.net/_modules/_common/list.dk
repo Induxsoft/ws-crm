@@ -14,7 +14,6 @@ module "list.dk"
         new headers
         {
             @"style":"position: sticky !important;top:0 !important;background-color:#fff;"
-            @"class":"h6"
         }
         if @@(cell,"element")=="th"{cell<"attributes*">:headers}
 
@@ -135,8 +134,8 @@ module "list.dk"
                     #btnEditar:hover{color:deepskyblue}
                     #btnEliminar:hover{color:red}
                     #btnDetalles:hover{color:green}
-                    thead{line-height:3rem;font-size:.9rem;color:#888;}
-                    tr{font-size:.9rem;}
+                    thead{line-height:3rem;font-size:.9rem;color:#888;font-weight:400;}
+                    tr,th{font-size:.9rem;}
                     td{padding:1rem 6px !important;color:#000;font-weight:400;}
                     '
                 }
