@@ -165,7 +165,7 @@ module "detail"
 	  				}
 	  				div(class="tab-pane fade #<atencion>" id="nav-atencion" role="tabpanel" "aria-labelledby"="nav-atencion-tab")
 	  				{
-	  					div(class="row" id="divgeneral")
+	  					div(class="row m-0 mt-2" id="divgeneral")
 	  					{
 	  						#!
 	  						do view.atencion()
@@ -174,7 +174,7 @@ module "detail"
 	  				}
 	  				div(class="tab-pane fade #<casos>" id="nav-casos" role="tabpanel" "aria-labelledby"="nav-casos-tab")
 	  				{
-	  					div(class="row" id="divgeneral")
+	  					div(class="row m-0 mt-2" id="divgeneral")
 	  					{
 	  						#!
 	  						do view.casos()
@@ -183,7 +183,7 @@ module "detail"
 	  				}
 	  				div(class="tab-pane fade #<alert>" id="nav-alertas" role="tabpanel" "aria-labelledby"="nav-alertas-tab")
 	  				{
-	  					div(class="row" id="divgeneral")
+	  					div(class="row m-0 mt-2" id="divgeneral")
 	  					{
 	  						#!
 	  						do view.alertas()

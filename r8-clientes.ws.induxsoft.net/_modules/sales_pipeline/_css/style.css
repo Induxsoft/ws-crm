@@ -69,7 +69,7 @@ body
   position: absolute;
   color: var(--blue-color);
   top: 22px;
-  right: -12px;
+  left: -12px;
   visibility: hidden;
   cursor: pointer;
 }
@@ -77,10 +77,9 @@ body
   position: absolute;
   color: var(--blue-color);
   top: 22px;
-  left: -12px;
+  right: -12px;
   visibility: hidden;
   cursor: pointer;
-  padding-right: 8px;
 }
 .icon-mas1:hover{
 	transition: .3s;
@@ -497,6 +496,7 @@ label{
     position: absolute;
     z-index: 100;
     background-color: var(--white-color);
+	min-width: 22rem !important;
 }
 .user_modal .modal_info {
     font-size: 1.2rem;
@@ -586,7 +586,7 @@ label{
 }
 /**********************************************/
   input:checked + .slider {
-    background-color: #2ab934;
+    background-color: var(--blue-color);
   }
   
   input:focus + .slider {

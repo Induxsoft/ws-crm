@@ -18,7 +18,7 @@ module "body"
                 }
                 h5(class="m-0 flex-grow-1"){$"Pipelines"}
             }
-            div(class="line-row ps-5 pe-4 gap-2 border-bottom")
+            div(class="line-row ps-5 pe-4 gap-2 border-bottom" id="body-first")
             {
                 button(class="btn btn-sm btn-edit btn-light bg-white border-0 d-flex align-items-center gap-2" id="btn-edit" onclick="controller.view_modal('user_modal',true);"){
                     svg(xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"){
@@ -100,7 +100,7 @@ module "body"
                         path(d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z")
                     }
                     h6(class="text-center" style="width:20rem;"){"Añadir una etapa"}
-                    //button(class="btn btn-sm btn-light"){"Nueva etapa"}     
+                    button(class="btn btn-sm btn-light d-none"){"Nueva etapa"}     
                 }
             }
         }

@@ -376,7 +376,7 @@ var views={
     {
         var m=document.querySelector("#body-first");
         var n=document.querySelector("#new");
-        var nh=document.querySelector("#new h2");
+        var nh=document.querySelector("#new h6");
         var nb=document.querySelector("#new button");
         if(flag)
         {
@@ -385,12 +385,14 @@ var views={
             nb.innerHTML="Agregar pipeline";
             m.classList.add("hidde_control");
             n.setAttribute("pipeline",true);
+            n.setAttribute("onclick","controller.view_modal(); controller.clear()");
         }else{
             nb.removeAttribute("onclick");
             nh.innerHTML="Añadir una etapa";
             nb.innerHTML="Nueva etapa";
             m.classList.remove("hidde_control");
             n.removeAttribute("pipeline");
+            n.removeAttribute("onclick");
         }
         
 

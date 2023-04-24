@@ -206,7 +206,7 @@ function stage(data=null,showcancel=true)
                         <input class="inputs mb-4" onkeyup="views.txtchange('input${uuid}','${uuid}')" id="input${uuid}" type="text" placeholder="Cualificado" value="${data.name}" maxlength="50">
                         <label for="" class="label"><small class="text-secondary">Probabilidad</small></label>
                         ${views.message(uuid,"prob")}
-                        <input class="inputs mb-4" type="number" placeholder="100" value="${data.probability}" value="0" min="0">
+                        <input class="inputs mb-4" type="number" placeholder="100" value="${data.probability}" value="0" min="0" max="100">
                     </div>
                     <label dkli-for="" class="label"><small class="text-secondary">Estancado en (dias)</small></label>
                     ${views.message(uuid,"est")}

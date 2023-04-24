@@ -136,7 +136,7 @@ module "mdhd"
         #$
         div(class="text-center")
         {
-            h4(style="margin-top:10%"){"No se encontraron ventas."}
+            h6(class="text-secondary mt-4"){"No se encontraron ventas."}
         }
         #!
     }else{
